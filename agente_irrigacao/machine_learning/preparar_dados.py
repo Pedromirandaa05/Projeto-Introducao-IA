@@ -1,6 +1,9 @@
 import pandas as pd
+from pathlib import Path
 
-arquivo = r"C:\Users\pedro\OneDrive\Área de Trabalho\introd_IA\agente_irrigacao\dados\monteiro_2025.CSV"
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+arquivo = BASE_DIR / "dados" / "monteiro_2025.CSV"
 
 df = pd.read_csv(
     arquivo,
@@ -19,8 +22,13 @@ dados = df[
     ]
 ].copy()
 
-dados["TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)"] = (
-    dados["TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)"]
+dados = dados.rename(columns={
+    "TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)": "Temperatura",
+    "UMIDADE RELATIVA DO AR, HORARIA (%)": "Umidade"
+})
+
+dados["Temperatura"] = (
+    dados["Temperatura"]
     .str.replace(",", ".", regex=False)
     .astype(float)
 )
@@ -37,4 +45,18 @@ dados["Hora"] = (
     .astype(int)
 )
 
-print(dados[["Data", "Hora UTC", "Dia", "Mes", "Hora"]].head())
+
+dados["Temperatura_2h"] = dados["Temperatura"].shift(-2)
+dados["Umidade_2h"] = dados["Umidade"].shift(-2)
+
+dados = dados.dropna()
+
+saida = BASE_DIR / "dados" / "dados_tratados.csv"
+
+dados.to_csv(
+    saida,
+    index=False,
+    encoding="utf-8"
+)
+
+print(f"Arquivo salvo em: {saida}")
