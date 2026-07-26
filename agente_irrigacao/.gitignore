@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+
+agente_irrigacao/machine_learning/modelo_temperatura.pkl
+agente_irrigacao/machine_learning/modelo_umidade.pkl

@@ -13,6 +13,6 @@ class Agente:
             self.modelo_umidade, ambiente.dia, ambiente.mes, ambiente.horario, ambiente.temperatura,
             ambiente.umidade)
 
-        decisao = aplicar_regras(ambiente, temperatura_prevista, umidade_prevista)
+        decisao, motivo = aplicar_regras(ambiente, temperatura_prevista, umidade_prevista)
 
-        return (decisao, temperatura_prevista, umidade_prevista)
+        return (decisao, motivo, temperatura_prevista, umidade_prevista)

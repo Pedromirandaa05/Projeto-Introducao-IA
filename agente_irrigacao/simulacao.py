@@ -14,10 +14,11 @@ casos = [
 # Testa cada cenário
 for i, ambiente in enumerate(casos, start=1):
 
-    acao, temp_prevista, umid_prevista = agente.decidir(ambiente)
+    acao, motivo, temp_prevista, umid_prevista = agente.decidir(ambiente)
 
     print(f"\nPrevisão para +2h:")
     print(f"Temperatura prevista: {temp_prevista:.1f}°C")
     print(f"Umidade prevista: {umid_prevista:.1f}%")
 
-    print(f"\nDecisão: {acao}")
+    print(f"Decisão: {acao}")
+    print(f"Motivo: {motivo}")

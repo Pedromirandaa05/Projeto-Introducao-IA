@@ -12,15 +12,9 @@ df = pd.read_csv(
     encoding="latin1"
 )
 
-# Seleciona apenas as colunas que serão utilizadas
 dados = df[
-    [
-        "Data",
-        "Hora UTC",
-        "TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)",
-        "UMIDADE RELATIVA DO AR, HORARIA (%)"
-    ]
-].copy()
+    ["Data","Hora UTC","TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)",
+     "UMIDADE RELATIVA DO AR, HORARIA (%)"]].copy()
 
 dados = dados.rename(columns={
     "TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)": "Temperatura",
@@ -44,7 +38,6 @@ dados["Hora"] = (
     .str[:2]
     .astype(int)
 )
-
 
 dados["Temperatura_2h"] = dados["Temperatura"].shift(-2)
 dados["Umidade_2h"] = dados["Umidade"].shift(-2)
