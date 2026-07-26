@@ -1,6 +1,7 @@
 
 import math
 import pandas as pd
+from joblib import dump
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
@@ -91,6 +92,12 @@ def main():
     print(f"MAE  : {mae_umid:.2f}")
     print(f"RMSE : {rmse_umid:.2f}")
     print(f"R²   : {r2_umid:.3f}")
+
+    dump(modelo_temperatura, BASE_DIR / "machine_learning" / "modelo_temperatura.pkl")
+
+    dump(modelo_umidade, BASE_DIR / "machine_learning" / "modelo_umidade.pkl")
+
+    print("\nModelos salvos com sucesso!")
 
 if __name__ == "__main__":
     main()

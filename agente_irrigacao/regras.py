@@ -1,4 +1,4 @@
-def aplicar_regras(amb):
+def aplicar_regras(amb, temperatura_prevista, umidade_prevista):
 
     # Regras gerais
 
@@ -13,13 +13,13 @@ def aplicar_regras(amb):
 
     # Regras de horario
 
-    if 12 <= amb.horario <= 15 and amb.umidade < 30:
+    if 12 <= amb.horario <= 15 and umidade_prevista < 30:
         return "Adiar irrigação"
 
-    if 18 <= amb.horario <= 22 and amb.umidade < 40:
+    if 18 <= amb.horario <= 22 and umidade_prevista < 40:
         return "Ligar irrigação"
 
-    if 0 <= amb.horario <= 6 and amb.umidade < 40:
+    if 0 <= amb.horario <= 6 and umidade_prevista < 40:
         return "Ligar irrigação"
 
     # Regras por cultivo
@@ -28,65 +28,65 @@ def aplicar_regras(amb):
 
     if amb.cultivo == "tomate":
 
-        if amb.umidade < 35:
+        if umidade_prevista < 35:
             return "Ligar irrigação"
 
-        if amb.umidade >= 60:
+        if umidade_prevista >= 60:
             return "Não irrigar"
 
     # Alface
 
     if amb.cultivo == "alface":
 
-        if amb.umidade < 40:
+        if umidade_prevista < 40:
             return "Ligar irrigação"
                
-        if amb.umidade >= 70:
+        if umidade_prevista >= 70:
             return "Não irrigar"
 
     # Arroz
 
     if amb.cultivo == "arroz":
 
-        if amb.umidade < 60:
+        if umidade_prevista < 60:
             return "Ligar irrigação"
 
     # Milho
 
     if amb.cultivo == "milho":
 
-        if amb.umidade < 30:
+        if umidade_prevista < 30:
             return "Ligar irrigação"
 
     # Mandioca
 
     if amb.cultivo == "mandioca":
 
-        if amb.umidade < 20:
+        if umidade_prevista < 20:
             return "Ligar irrigação"
 
-        if amb.umidade >= 20:
+        if umidade_prevista >= 20:
             return "Não irrigar"
 
     # Cana-de-açúcar
 
     if amb.cultivo == "cana":
 
-        if amb.umidade < 35:
+        if umidade_prevista < 35:
             return "Ligar irrigação"
 
     # Feijão
 
     if amb.cultivo == "feijao":
 
-        if amb.umidade < 30:
+        if umidade_prevista < 30:
             return "Ligar irrigação"
 
     # Soja
 
     if amb.cultivo == "soja":
 
-        if amb.umidade < 35:
+        if umidade_prevista < 35:
             return "Ligar irrigação"
 
     return "Monitorar"
